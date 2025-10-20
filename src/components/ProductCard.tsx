@@ -3,12 +3,15 @@ import { MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Product } from '@/types/product';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { t } = useLanguage();
+  
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <Link to={`/product/${product.id}`}>
@@ -37,7 +40,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Link to={`/product/${product.id}`} className="w-full">
-          <Button className="w-full">View Details</Button>
+          <Button className="w-full">{t('viewDetails')}</Button>
         </Link>
       </CardFooter>
     </Card>

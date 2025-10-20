@@ -1,11 +1,30 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Search, User } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
+import { useLanguage } from '@/context/LanguageContext';
+import LanguageToggle from '@/components/LanguageToggle';
+import VoiceAssistant from '@/components/VoiceAssistant';
+import { useState } from 'react';
 
 const Navbar = () => {
   const { totalItems } = useCart();
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleVoiceSearch = (text: string) => {
+    setSearchQuery(text);
+    navigate(`/?search=${encodeURIComponent(text)}`);
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-background border-b border-border">
@@ -16,20 +35,25 @@ const Navbar = () => {
           </Link>
           
           <div className="hidden md:flex items-center gap-6">
-            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-            <Link to="/about" className="hover:text-primary transition-colors">About us</Link>
-            <Link to="/location" className="hover:text-primary transition-colors">Location</Link>
-            <Link to="/contacts" className="hover:text-primary transition-colors">Contacts</Link>
+            <Link to="/" className="hover:text-primary transition-colors">{t('home')}</Link>
+            <Link to="/about" className="hover:text-primary transition-colors">{t('about')}</Link>
+            <Link to="/location" className="hover:text-primary transition-colors">{t('location')}</Link>
+            <Link to="/contacts" className="hover:text-primary transition-colors">{t('contacts')}</Link>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden md:block relative w-64">
+            <form onSubmit={handleSearch} className="hidden md:flex relative w-64">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
-                placeholder="Search products..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={t('search')}
                 className="pl-10"
               />
-            </div>
+              <VoiceAssistant onVoiceInput={handleVoiceSearch} />
+            </form>
+
+            <LanguageToggle />
             
             <Link to="/cart">
               <Button variant="ghost" size="icon" className="relative">
