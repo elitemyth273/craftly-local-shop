@@ -1,0 +1,145 @@
+import { useState, useEffect } from 'react';
+import { MapPin, Navigation } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
+
+const Location = () => {
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [locationName, setLocationName] = useState<string>('');
+  const { toast } = useToast();
+
+  const getLocation = () => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+          
+          // Reverse geocoding to get location name
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+            .then(res => res.json())
+            .then(data => {
+              setLocationName(data.display_name || 'Location found');
+              toast({
+                title: 'Location detected',
+                description: 'Your location has been successfully detected.',
+              });
+            })
+            .catch(() => {
+              setLocationName(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+            });
+        },
+        (error) => {
+          toast({
+            title: 'Location error',
+            description: 'Unable to detect your location. Please enable location services.',
+            variant: 'destructive',
+          });
+        }
+      );
+    } else {
+      toast({
+        title: 'Not supported',
+        description: 'Geolocation is not supported by your browser.',
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const artisanLocations = [
+    { name: 'Kancharapara', artisans: 5, lat: 22.9447, lng: 88.4346 },
+    { name: 'Kalyani', artisans: 8, lat: 22.9750, lng: 88.4344 },
+    { name: 'Patna', artisans: 12, lat: 25.5941, lng: 85.1376 },
+    { name: 'Badaun', artisans: 6, lat: 28.0339, lng: 79.1251 },
+  ];
+
+  return (
+    <div className="container mx-auto px-4 py-16">
+      <h1 className="text-4xl font-bold mb-8">Artisan Locations</h1>
+
+      <div className="grid lg:grid-cols-3 gap-8 mb-12">
+        <div className="lg:col-span-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-primary" />
+                Find Artisans Near You
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Button onClick={getLocation} className="mb-4">
+                <Navigation className="mr-2 h-4 w-4" />
+                Get My Location
+              </Button>
+              
+              {userLocation && (
+                <div className="p-4 bg-accent rounded-lg">
+                  <p className="text-sm font-semibold mb-1">Your Location:</p>
+                  <p className="text-sm text-muted-foreground">{locationName}</p>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Coordinates: {userLocation.lat.toFixed(4)}, {userLocation.lng.toFixed(4)}
+                  </p>
+                </div>
+              )}
+
+              <div className="mt-6 p-6 bg-muted rounded-lg aspect-video flex items-center justify-center">
+                <div className="text-center">
+                  <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
+                  <p className="text-muted-foreground">Interactive map would be displayed here</p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Showing artisan locations across India
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div>
+          <Card>
+            <CardHeader>
+              <CardTitle>Active Locations</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {artisanLocations.map((location) => (
+                  <div key={location.name} className="border-b pb-3 last:border-0">
+                    <div className="flex items-start gap-2">
+                      <MapPin className="h-4 w-4 text-primary mt-1" />
+                      <div>
+                        <p className="font-semibold">{location.name}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {location.artisans} active artisans
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {artisanLocations.map((location) => (
+          <Card key={location.name}>
+            <CardContent className="p-6">
+              <MapPin className="h-8 w-8 text-primary mb-3" />
+              <h3 className="font-bold text-lg mb-2">{location.name}</h3>
+              <p className="text-sm text-muted-foreground mb-3">
+                {location.artisans} Artisans
+              </p>
+              <Button variant="outline" size="sm" className="w-full">
+                View Products
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Location;

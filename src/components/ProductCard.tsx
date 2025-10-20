@@ -1,0 +1,47 @@
+import { Link } from 'react-router-dom';
+import { MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Product } from '@/types/product';
+
+interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard = ({ product }: ProductCardProps) => {
+  return (
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+      <Link to={`/product/${product.id}`}>
+        <div className="aspect-square overflow-hidden">
+          <img 
+            src={product.image} 
+            alt={product.name}
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </Link>
+      <CardContent className="p-4">
+        <div className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
+          <MapPin className="h-4 w-4" />
+          <span>{product.location}</span>
+        </div>
+        <Link to={`/product/${product.id}`}>
+          <h3 className="font-semibold text-lg mb-2 hover:text-primary transition-colors">
+            {product.name}
+          </h3>
+        </Link>
+        <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+          {product.description}
+        </p>
+        <p className="text-xl font-bold text-primary">₹{product.price}</p>
+      </CardContent>
+      <CardFooter className="p-4 pt-0">
+        <Link to={`/product/${product.id}`} className="w-full">
+          <Button className="w-full">View Details</Button>
+        </Link>
+      </CardFooter>
+    </Card>
+  );
+};
+
+export default ProductCard;
