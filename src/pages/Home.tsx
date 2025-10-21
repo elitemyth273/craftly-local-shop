@@ -36,22 +36,29 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center">
+        {/* Background image with darker overlay */}
         <div 
-          className="absolute inset-0 bg-cover bg-center brightness-110"
+          className="absolute inset-0 bg-cover bg-center brightness-90"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background/70 to-background/30" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         
+        {/* Text Content */}
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 text-blue-500">
+            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 text-blue-300 drop-shadow-lg">
               {t('discoverAuthentic')}
-              <span className="block text-blue-400">{t('handmadeTreasures')}</span>
+              <span className="block text-blue-200 drop-shadow-md">
+                {t('handmadeTreasures')}
+              </span>
             </h1>
-            <p className="text-lg text-muted-foreground mb-8">
+
+            {/* Clean white description text */}
+            <p className="text-lg font-medium text-white mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] leading-relaxed">
               {t('heroDesc')}
             </p>
+
             <div className="flex gap-4">
               <Button size="lg" className="group" onClick={scrollToProducts}>
                 {t('shopNow')}
