@@ -37,17 +37,17 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center">
         <div 
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center brightness-110"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 to-background/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/70 to-background/30" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 text-white">
+            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 text-blue-500">
               {t('discoverAuthentic')}
-              <span className="block text-accent">{t('handmadeTreasures')}</span>
+              <span className="block text-blue-400">{t('handmadeTreasures')}</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
               {t('heroDesc')}
@@ -108,3 +108,4 @@ const Home = () => {
 };
 
 export default Home;
+
