@@ -6,7 +6,6 @@ import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { products } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
-import Map from '@/components/Map';
 
 const Location = () => {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
@@ -68,15 +67,6 @@ const Location = () => {
     <div className="container mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold mb-8 text-center">{t('artisanLocations')}</h1>
       
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">Interactive Map</h2>
-        <Map onLocationSelect={(loc) => {
-          toast({
-            title: 'Location Selected',
-            description: `${loc.name}`,
-          });
-        }} />
-      </div>
 
       <div className="grid lg:grid-cols-3 gap-8 mb-12">
         <div className="lg:col-span-2">
@@ -103,15 +93,27 @@ const Location = () => {
                 </div>
               )}
 
-              <div className="mt-6 p-6 bg-muted rounded-lg aspect-video flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
-                  <p className="text-muted-foreground">Interactive map would be displayed here</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Showing artisan locations across India
-                  </p>
+              {userLocation ? (
+                <div className="mt-6 rounded-lg overflow-hidden aspect-video border">
+                  <iframe
+                    className="w-full h-full"
+                    src={`https://www.google.com/maps?q=${userLocation.lat},${userLocation.lng}&z=14&output=embed`}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Google Map - Your Location"
+                  />
                 </div>
-              </div>
+              ) : (
+                <div className="mt-6 p-6 bg-muted rounded-lg aspect-video flex items-center justify-center">
+                  <div className="text-center">
+                    <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
+                    <p className="text-muted-foreground">Interactive map will display here after detecting your location</p>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      Click "{t('getMyLocation')}" to show your current location
+                    </p>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>

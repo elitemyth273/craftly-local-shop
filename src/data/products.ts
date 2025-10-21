@@ -8,37 +8,49 @@ export const products: Product[] = [
   {
     id: 1,
     name: 'Handwoven Jute Basket',
+    name_hi: 'हाथ से बुनी जूट की टोकरी',
     description: 'Beautiful handwoven basket made from natural jute fibers. Perfect for storage and decoration.',
+    description_hi: 'प्राकृतिक जूट रेशों से बनी सुंदर हाथ से बुनी टोकरी। भंडारण और सजावट के लिए उत्तम।',
     price: 850,
     image: productBasket,
     location: 'Kancharapara',
-    artisan: 'Radha Devi'
+    artisan: 'Radha Devi',
+    artisan_hi: 'राधा देवी'
   },
   {
     id: 2,
     name: 'Terracotta Pottery Vase',
+    name_hi: 'टेराकोटा मिट्टी का फूलदान',
     description: 'Traditional terracotta vase with intricate hand-carved patterns. Made using age-old pottery techniques.',
+    description_hi: 'पारंपरिक टेराकोटा फूलदान जिसमें बारीक हाथ से उकेरे गए पैटर्न हैं। प्राचीन कुम्हार तकनीकों से बनाया गया।',
     price: 1200,
     image: productPottery,
     location: 'Kalyani',
-    artisan: 'Mohan Kumar'
+    artisan: 'Mohan Kumar',
+    artisan_hi: 'मोहन कुमार'
   },
   {
     id: 3,
     name: 'Block Print Cotton Textile',
+    name_hi: 'ब्लॉक प्रिंट कॉटन टेक्सटाइल',
     description: 'Vibrant handwoven cotton textile featuring traditional block print designs with natural dyes.',
+    description_hi: 'प्राकृतिक रंगों के साथ पारंपरिक ब्लॉक प्रिंट डिज़ाइन वाला जीवंत हाथ से बुना कॉटन कपड़ा।',
     price: 1500,
     image: productTextile,
     location: 'Patna',
-    artisan: 'Anita Sharma'
+    artisan: 'Anita Sharma',
+    artisan_hi: 'अनिता शर्मा'
   },
   {
     id: 4,
     name: 'Carved Wooden Decorative Panel',
+    name_hi: 'नक्काशीदार लकड़ी का सजावटी पैनल',
     description: 'Exquisite hand-carved wooden panel featuring traditional Indian motifs. A perfect wall decoration piece.',
+    description_hi: 'पारंपरिक भारतीय रूपांकनों वाला बेहतरीन हाथ से नक्काशी किया गया लकड़ी का पैनल। दीवार सजावट के लिए उत्तम।',
     price: 2500,
     image: productWooden,
     location: 'Badaun',
-    artisan: 'Ravi Verma'
+    artisan: 'Ravi Verma',
+    artisan_hi: 'रवि वर्मा'
   }
 ];
