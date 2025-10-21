@@ -30,7 +30,6 @@ const VoiceAssistant = ({ onVoiceInput, textToSpeak }: VoiceAssistantProps) => {
     <div className="flex gap-2">
       {onVoiceInput && (
         <Button
-          type="button"
           variant="ghost"
           size="icon"
           onClick={handleMicClick}
@@ -42,7 +41,6 @@ const VoiceAssistant = ({ onVoiceInput, textToSpeak }: VoiceAssistantProps) => {
       )}
       {textToSpeak && (
         <Button
-          type="button"
           variant="ghost"
           size="icon"
           onClick={handleSpeakClick}

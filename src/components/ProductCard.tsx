@@ -10,9 +10,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const { t, language } = useLanguage();
-  const localizedName = language === 'hi' && (product as any).name_hi ? (product as any).name_hi : product.name;
-  const localizedDescription = language === 'hi' && (product as any).description_hi ? (product as any).description_hi : product.description;
+  const { t } = useLanguage();
   
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
@@ -20,7 +18,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="aspect-square overflow-hidden">
           <img 
             src={product.image} 
-            alt={localizedName}
+            alt={product.name}
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
         </div>
@@ -32,11 +30,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
         <Link to={`/product/${product.id}`}>
           <h3 className="font-semibold text-lg mb-2 hover:text-primary transition-colors">
-            {localizedName}
+            {product.name}
           </h3>
         </Link>
         <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-          {localizedDescription}
+          {product.description}
         </p>
         <p className="text-xl font-bold text-primary">₹{product.price}</p>
       </CardContent>

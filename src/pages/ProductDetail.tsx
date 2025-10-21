@@ -14,7 +14,7 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { toast } = useToast();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   
   const product = products.find(p => p.id === Number(id));
 
@@ -40,7 +40,7 @@ const ProductDetail = () => {
     navigate('/checkout');
   };
 
-  const productDescription = `${language === 'hi' && (product as any).name_hi ? (product as any).name_hi : product.name}. ${language === 'hi' && (product as any).description_hi ? (product as any).description_hi : product.description}. ${t('price')}: ${product.price} ${t('rupees')}. ${t('madeBy')} ${language === 'hi' && (product as any).artisan_hi ? (product as any).artisan_hi : product.artisan} ${t('in')} ${product.location}.`;
+  const productDescription = `${product.name}. ${product.description}. ${t('price')}: ${product.price} ${t('rupees')}. ${t('madeBy')} ${product.artisan} ${t('in')} ${product.location}.`;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -98,7 +98,7 @@ const ProductDetail = () => {
 
         <div className="flex flex-col gap-6">
           <div>
-            <h1 className="text-4xl font-bold mb-4">{language === 'hi' && (product as any).name_hi ? (product as any).name_hi : product.name}</h1>
+            <h1 className="text-4xl font-bold mb-4">{product.name}</h1>
             <p className="text-3xl font-bold text-primary mb-6">₹{product.price}</p>
           </div>
 
@@ -116,12 +116,12 @@ const ProductDetail = () => {
 
           <div>
             <h3 className="font-semibold mb-2">{t('description')}</h3>
-            <p className="text-muted-foreground">{language === 'hi' && (product as any).description_hi ? (product as any).description_hi : product.description}</p>
+            <p className="text-muted-foreground">{product.description}</p>
           </div>
 
           <div>
             <h3 className="font-semibold mb-2">{t('artisan')}</h3>
-            <p className="text-muted-foreground">{language === 'hi' && (product as any).artisan_hi ? (product as any).artisan_hi : product.artisan}</p>
+            <p className="text-muted-foreground">{product.artisan}</p>
           </div>
 
           <div className="flex gap-4">
