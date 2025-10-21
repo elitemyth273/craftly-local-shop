@@ -7,6 +7,7 @@ import { products } from '@/data/products';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
 import VoiceAssistant from '@/components/VoiceAssistant';
+import makingVideo from '@/assets/making-video.mp4';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -39,7 +40,7 @@ const ProductDetail = () => {
     navigate('/checkout');
   };
 
-  const productDescription = `${product.name}. ${product.description}. Price: ${product.price} rupees. Made by ${product.artisan} in ${product.location}.`;
+  const productDescription = `${product.name}. ${product.description}. ${t('price')}: ${product.price} ${t('rupees')}. ${t('madeBy')} ${product.artisan} ${t('in')} ${product.location}.`;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -68,16 +69,29 @@ const ProductDetail = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Video className="h-5 w-5" />
-                {t('videoSection')}
+                {t('makingProcessVideo')}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <Video className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
-                  <p className="text-muted-foreground font-semibold">{t('comingSoon')}</p>
+              {product.name === "Block Print Cotton Textile" ? (
+                <div className="aspect-video rounded-lg overflow-hidden">
+                  <video 
+                    src={makingVideo} 
+                    controls 
+                    muted
+                    className="w-full h-full object-cover"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
-              </div>
+              ) : (
+                <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                  <div className="text-center">
+                    <Video className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+                    <p className="text-muted-foreground font-semibold">{t('comingSoon')}</p>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>

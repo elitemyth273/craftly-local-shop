@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { MapPin, Navigation } from 'lucide-react';
+import { MapPin, Navigation, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { products } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
-import { Link } from 'react-router-dom';
+import Map from '@/components/Map';
 
 const Location = () => {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
@@ -66,7 +66,17 @@ const Location = () => {
 
   return (
     <div className="container mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold mb-8">{t('artisanLocations')}</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">{t('artisanLocations')}</h1>
+      
+      <div className="mb-12">
+        <h2 className="text-2xl font-semibold mb-4">Interactive Map</h2>
+        <Map onLocationSelect={(loc) => {
+          toast({
+            title: 'Location Selected',
+            description: `${loc.name}`,
+          });
+        }} />
+      </div>
 
       <div className="grid lg:grid-cols-3 gap-8 mb-12">
         <div className="lg:col-span-2">
@@ -154,6 +164,7 @@ const Location = () => {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-3xl font-bold">Products from {selectedLocation}</h2>
             <Button variant="ghost" onClick={() => setSelectedLocation(null)}>
+              <X className="h-4 w-4 mr-2" />
               Clear Filter
             </Button>
           </div>

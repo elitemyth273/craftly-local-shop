@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
-import heroImage from '@/assets/hero-crafts.jpg';
+import heroImage from '@/assets/hero-background.jpg';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Home = () => {
@@ -45,9 +45,9 @@ const Home = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 text-white">
               {t('discoverAuthentic')}
-              <span className="block text-primary">{t('handmadeTreasures')}</span>
+              <span className="block text-accent">{t('handmadeTreasures')}</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
               {t('heroDesc')}
