@@ -48,11 +48,12 @@ const Navbar = () => {
               <Input 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => e.stopPropagation()}
                 placeholder={t('search')}
                 className="pl-10"
               />
-              <VoiceAssistant onVoiceInput={handleVoiceSearch} />
             </form>
+            <VoiceAssistant onVoiceInput={handleVoiceSearch} />
 
             <LanguageToggle />
             
