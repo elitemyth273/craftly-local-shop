@@ -7,6 +7,7 @@ import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
 import heroImage from '@/assets/hero-background.jpg';
 import { useLanguage } from '@/context/LanguageContext';
+import EmojiSlider from '@/components/EmojiSlider';
 
 const Home = () => {
   const [locationFilter, setLocationFilter] = useState<string>('all');
@@ -34,8 +35,11 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Emoji Slider */}
+      <EmojiSlider />
+      
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center">
+      <section className="relative h-[600px] flex items-center justify-center">
         {/* Background image with darker overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center brightness-90"
@@ -46,7 +50,7 @@ const Home = () => {
         
         {/* Text Content */}
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 text-blue-300 drop-shadow-lg">
               {t('discoverAuthentic')}
               <span className="block text-blue-200 drop-shadow-md">
@@ -59,7 +63,7 @@ const Home = () => {
               {t('heroDesc')}
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 justify-center">
               <Button size="lg" className="group" onClick={scrollToProducts}>
                 {t('shopNow')}
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
