@@ -7,6 +7,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import LanguageToggle from '@/components/LanguageToggle';
 import VoiceAssistant from '@/components/VoiceAssistant';
 import { useState } from 'react';
+import logo from '@/assets/logo.png';
 
 const Navbar = () => {
   const { totalItems } = useCart();
@@ -31,8 +32,8 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
-          <Link to="/" className="text-2xl font-bold text-primary">
-            The Local Bazar
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="The Local Bazar" className="h-12 w-auto" />
           </Link>
           
           <div className="hidden md:flex items-center gap-6">
