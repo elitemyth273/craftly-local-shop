@@ -3,6 +3,7 @@ import productBasket from '@/assets/product-basket.jpg';
 import productPottery from '@/assets/product-pottery.jpg';
 import productTextile from '@/assets/product-textile.jpg';
 import productWooden from '@/assets/product-wooden.jpg';
+import makingVideo from '@/assets/making-video.mp4';
 
 export const products: Product[] = [
   {
@@ -37,6 +38,7 @@ export const products: Product[] = [
     description_hi: 'प्राकृतिक रंगों के साथ पारंपरिक ब्लॉक प्रिंट डिज़ाइन वाला जीवंत हाथ से बुना कॉटन कपड़ा।',
     price: 1500,
     image: productTextile,
+    video: makingVideo,
     location: 'Patna',
     artisan: 'Anita Sharma',
     artisan_hi: 'अनिता शर्मा'

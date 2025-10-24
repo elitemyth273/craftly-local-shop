@@ -6,6 +6,7 @@ export interface Product {
   description_hi?: string;
   price: number;
   image: string;
+  video?: string;
   location: string;
   artisan: string;
   artisan_hi?: string;

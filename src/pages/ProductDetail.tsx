@@ -7,7 +7,6 @@ import { products } from '@/data/products';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
 import VoiceAssistant from '@/components/VoiceAssistant';
-import makingVideo from '@/assets/making-video.mp4';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -73,10 +72,10 @@ const ProductDetail = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {product.name === "Block Print Cotton Textile" ? (
+              {product.video ? (
                 <div className="aspect-video rounded-lg overflow-hidden">
                   <video 
-                    src={makingVideo} 
+                    src={product.video} 
                     controls 
                     muted
                     className="w-full h-full object-cover"
