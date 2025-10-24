@@ -51,15 +51,20 @@ const Home = () => {
         {/* Text Content */}
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-8 text-blue-300 drop-shadow-lg">
+            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 text-blue-300 drop-shadow-lg">
               {t('discoverAuthentic')}
               <span className="block text-blue-200 drop-shadow-md">
                 {t('handmadeTreasures')}
               </span>
             </h1>
 
+            {/* Clean white description text */}
+            <p className="text-lg font-medium text-white mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] leading-relaxed">
+              {t('heroDesc')}
+            </p>
+
             <div className="flex gap-4 justify-center">
-              <Button size="lg" variant="outline" className="group" onClick={scrollToProducts}>
+              <Button size="lg" className="group" onClick={scrollToProducts}>
                 {t('shopNow')}
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -108,13 +113,6 @@ const Home = () => {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-      </section>
-
-      {/* Description Section at Bottom */}
-      <section className="container mx-auto px-4 py-16 text-center">
-        <blockquote className="text-lg font-medium text-muted-foreground italic max-w-3xl mx-auto">
-          "{t('heroDesc')}"
-        </blockquote>
       </section>
     </div>
   );
