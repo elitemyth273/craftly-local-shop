@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
-import heroImage from '@/assets/hero-background.jpg';
+import Video from '@/assets/Video.mp4';
 import { useLanguage } from '@/context/LanguageContext';
 import EmojiSlider from '@/components/EmojiSlider';
 
@@ -43,12 +43,14 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center justify-center">
         {/* Background image with overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center brightness-90"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+          <video
+           className="absolute inset-0 w-full h-full object-cover brightness-90"
+           src={Video} // import your video file or use a URL
+           autoPlay
+           loop
+           muted
+           playsInline
+          />
 
         {/* Hero Text */}
         <div className="container mx-auto px-4 relative z-10">
@@ -132,5 +134,6 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
