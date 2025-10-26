@@ -55,21 +55,10 @@ const Home = () => {
         {/* Hero Text */}
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <h1 className="text-6xl md:text-8xl font-script mb-12">
-              <span className="inline-block">
-                {'The Local Bazar'.split('').map((char, index) => (
-                  <span
-                    key={index}
-                    className="inline-block text-yellow-300 drop-shadow-[0_0_20px_rgba(253,224,71,0.9)]"
-                    style={{
-                      animation: `fadeInChar 0.15s ease-out forwards`,
-                      animationDelay: `${index * 0.08}s`,
-                      opacity: 0
-                    }}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </span>
-                ))}
+            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-12 text-blue-300 drop-shadow-lg">
+              {t('discoverAuthentic')}
+              <span className="block text-blue-200 drop-shadow-md">
+                {t('handmadeTreasures')}
               </span>
             </h1>
 
