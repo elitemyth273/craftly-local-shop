@@ -13,9 +13,10 @@ export default {
       },
     },
       extend: {
-        fontFamily: {
-          serif: ['Crimson Text', 'serif'],
-        },
+      fontFamily: {
+        serif: ['Crimson Text', 'serif'],
+        script: ['Great Vibes', 'cursive'],
+      },
         colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

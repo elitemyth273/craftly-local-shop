@@ -3,13 +3,17 @@
 @tailwind utilities;
 
 @keyframes fadeInChar {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: scale(0.5) translateY(30px);
   }
-  to {
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1) translateY(-5px);
+  }
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
   }
 }
 
